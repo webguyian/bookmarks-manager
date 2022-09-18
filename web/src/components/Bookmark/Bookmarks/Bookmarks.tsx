@@ -84,6 +84,8 @@ const BookmarksList = ({ bookmarks }) => {
           <tr>
             <th>ID</th>
             <th>URL</th>
+            <th>Title</th>
+            <th>Description</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -92,6 +94,8 @@ const BookmarksList = ({ bookmarks }) => {
             <tr key={bookmark.id}>
               <td>{truncate(bookmark.id)}</td>
               <td>{truncate(bookmark.url)}</td>
+              <td>{truncate(bookmark.title)}</td>
+              <td>{truncate(bookmark.description)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

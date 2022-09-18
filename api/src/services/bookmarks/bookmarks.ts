@@ -1,3 +1,4 @@
+import getMetadata from 'metadata-scraper'
 import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -14,20 +15,36 @@ export const bookmark: QueryResolvers['bookmark'] = ({ id }) => {
   })
 }
 
-export const createBookmark: MutationResolvers['createBookmark'] = ({
+export const createBookmark: MutationResolvers['createBookmark'] = async ({
   input,
 }) => {
+  const { url } = input
+  const metadata = await getMetadata(url)
+  const data = {
+    ...input,
+    title: metadata.title,
+    description: metadata.description,
+  }
+
   return db.bookmark.create({
-    data: input,
+    data,
   })
 }
 
-export const updateBookmark: MutationResolvers['updateBookmark'] = ({
+export const updateBookmark: MutationResolvers['updateBookmark'] = async ({
   id,
   input,
 }) => {
+  const { url } = input
+  const metadata = await getMetadata(url)
+  const data = {
+    ...input,
+    title: metadata.title,
+    description: metadata.description,
+  }
+
   return db.bookmark.update({
-    data: input,
+    data,
     where: { id },
   })
 }

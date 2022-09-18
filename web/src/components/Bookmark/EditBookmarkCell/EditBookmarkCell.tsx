@@ -37,15 +37,18 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ bookmark }: CellSuccessProps<EditBookmarkById>) => {
-  const [updateBookmark, { loading, error }] = useMutation(UPDATE_BOOKMARK_MUTATION, {
-    onCompleted: () => {
-      toast.success('Bookmark updated')
-      navigate(routes.bookmarks())
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-  })
+  const [updateBookmark, { loading, error }] = useMutation(
+    UPDATE_BOOKMARK_MUTATION,
+    {
+      onCompleted: () => {
+        toast.success('Bookmark updated')
+        navigate(routes.bookmarks())
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+    }
+  )
 
   const onSave = (input, id) => {
     updateBookmark({ variables: { id, input } })
@@ -54,10 +57,15 @@ export const Success = ({ bookmark }: CellSuccessProps<EditBookmarkById>) => {
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Edit Bookmark {bookmark.id}</h2>
+        <h2 className="rw-heading rw-heading-secondary">Edit Bookmark</h2>
       </header>
       <div className="rw-segment-main">
-        <BookmarkForm bookmark={bookmark} onSave={onSave} error={error} loading={loading} />
+        <BookmarkForm
+          bookmark={bookmark}
+          onSave={onSave}
+          error={error}
+          loading={loading}
+        />
       </div>
     </div>
   )

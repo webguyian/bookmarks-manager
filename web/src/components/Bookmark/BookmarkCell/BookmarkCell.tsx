@@ -12,6 +12,8 @@ export const QUERY = gql`
       updatedAt
       userId
       url
+      title
+      description
     }
   }
 `

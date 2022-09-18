@@ -5,6 +5,8 @@ export const schema = gql`
     updatedAt: DateTime!
     userId: String!
     url: String!
+    title: String
+    description: String
   }
 
   type Query {

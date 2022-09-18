@@ -66,24 +66,28 @@ const Bookmark = ({ bookmark }) => {
     <>
       <div className="rw-segment">
         <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">Bookmark {bookmark.id} Detail</h2>
+          <h2 className="rw-heading rw-heading-secondary">Bookmark Detail</h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
-              <th>Id</th>
+              <th>ID</th>
               <td>{bookmark.id}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Created at</th>
               <td>{timeTag(bookmark.createdAt)}</td>
-            </tr><tr>
-              <th>Updated at</th>
-              <td>{timeTag(bookmark.updatedAt)}</td>
-            </tr><tr>
-              <th>User id</th>
-              <td>{bookmark.userId}</td>
-            </tr><tr>
-              <th>Url</th>
+            </tr>
+            <tr>
+              <th>Title</th>
+              <td>{bookmark.title}</td>
+            </tr>
+            <tr>
+              <th>Description</th>
+              <td>{bookmark.description}</td>
+            </tr>
+            <tr>
+              <th>URL</th>
               <td>{bookmark.url}</td>
             </tr>
           </tbody>
