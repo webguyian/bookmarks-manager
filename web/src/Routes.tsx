@@ -7,7 +7,7 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Router, Route, Set } from '@redwoodjs/router'
+import { Router, Route, Set, Private } from '@redwoodjs/router'
 
 import BookmarksLayout from 'src/layouts/BookmarksLayout'
 
@@ -16,7 +16,7 @@ import CommonLayout from './layouts/CommonLayout/CommonLayout'
 const Routes = () => {
   return (
     <Router>
-      <Set wrap={BookmarksLayout}>
+      <Set wrap={BookmarksLayout} private unauthenticated="signIn">
         <Route path="/bookmarks/new" page={BookmarkNewBookmarkPage} name="newBookmark" />
         <Route path="/bookmarks/{id:Int}/edit" page={BookmarkEditBookmarkPage} name="editBookmark" />
         <Route path="/bookmarks/{id:Int}" page={BookmarkBookmarkPage} name="bookmark" />
@@ -24,7 +24,9 @@ const Routes = () => {
       </Set>
       <Set wrap={CommonLayout}>
         <Route path="/sign-in" page={SignInPage} name="signIn" />
-        <Route path="/" page={HomePage} name="home" />
+        <Private unauthenticated="signIn">
+          <Route path="/" page={HomePage} name="home" />
+        </Private>
       </Set>
       <Route notfound page={NotFoundPage} />
     </Router>

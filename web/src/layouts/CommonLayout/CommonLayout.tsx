@@ -22,7 +22,7 @@ const CommonLayout = ({ children }: CommonLayoutProps) => {
           </Link>
         </h1>
         {isAuthenticated ? (
-          <UserButton />
+          <UserButton afterSignOutUrl={routes.signIn()} />
         ) : (
           <Link to={routes.signIn()}>Sign in</Link>
         )}
