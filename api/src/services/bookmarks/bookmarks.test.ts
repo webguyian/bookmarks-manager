@@ -15,7 +15,7 @@ import type { StandardScenario } from './bookmarks.scenarios'
 
 describe('bookmarks', () => {
   scenario('returns all bookmarks', async (scenario: StandardScenario) => {
-    const result = await bookmarks()
+    const result = await bookmarks({ userId: scenario.bookmark.one.userId })
 
     expect(result.length).toEqual(Object.keys(scenario.bookmark).length)
   })

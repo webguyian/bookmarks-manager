@@ -2,8 +2,10 @@ import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
 
-export const bookmarks: QueryResolvers['bookmarks'] = () => {
-  return db.bookmark.findMany()
+export const bookmarks: QueryResolvers['bookmarks'] = ({ userId }) => {
+  return db.bookmark.findMany({
+    where: { userId },
+  })
 }
 
 export const bookmark: QueryResolvers['bookmark'] = ({ id }) => {

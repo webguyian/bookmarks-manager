@@ -1,5 +1,6 @@
 import humanize from 'humanize-string'
 
+import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
@@ -54,6 +55,8 @@ const checkboxInputTag = (checked) => {
 }
 
 const BookmarksList = ({ bookmarks }) => {
+  const { currentUser } = useAuth()
+
   const [deleteBookmark] = useMutation(DELETE_BOOKMARK_MUTATION, {
     onCompleted: () => {
       toast.success('Bookmark deleted')
@@ -64,7 +67,7 @@ const BookmarksList = ({ bookmarks }) => {
     // This refetches the query on the list page. Read more about other ways to
     // update the cache over here:
     // https://www.apollographql.com/docs/react/data/mutations/#making-all-other-cache-updates
-    refetchQueries: [{ query: QUERY }],
+    refetchQueries: [{ query: QUERY, variables: { userId: currentUser.id } }],
     awaitRefetchQueries: true,
   })
 
@@ -79,11 +82,8 @@ const BookmarksList = ({ bookmarks }) => {
       <table className="rw-table">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Created at</th>
-            <th>Updated at</th>
-            <th>User id</th>
-            <th>Url</th>
+            <th>ID</th>
+            <th>URL</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -91,9 +91,6 @@ const BookmarksList = ({ bookmarks }) => {
           {bookmarks.map((bookmark) => (
             <tr key={bookmark.id}>
               <td>{truncate(bookmark.id)}</td>
-              <td>{timeTag(bookmark.createdAt)}</td>
-              <td>{timeTag(bookmark.updatedAt)}</td>
-              <td>{truncate(bookmark.userId)}</td>
               <td>{truncate(bookmark.url)}</td>
               <td>
                 <nav className="rw-table-actions">

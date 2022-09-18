@@ -1,3 +1,4 @@
+import { useAuth } from '@redwoodjs/auth'
 import {
   Form,
   FormError,
@@ -7,18 +8,14 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 
-
-
 const BookmarkForm = (props) => {
-  const onSubmit = (data) => {
+  const { currentUser } = useAuth()
 
-  
-    
-    
-  
-    
-    
-  
+  const onSubmit = ({ url }) => {
+    const data = {
+      url,
+      userId: currentUser.id,
+    }
     props.onSave(data, props?.bookmark?.id)
   }
 
@@ -31,50 +28,27 @@ const BookmarkForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-      
-        <Label
-          name="userId"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          User id
-        </Label>
-        
-          <TextField
-            name="userId"
-            defaultValue={props.bookmark?.userId}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
-
-        <FieldError name="userId" className="rw-field-error" />
 
         <Label
           name="url"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Url
+          URL
         </Label>
-        
-          <TextField
-            name="url"
-            defaultValue={props.bookmark?.url}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="url"
+          defaultValue={props.bookmark?.url}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="url" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
           </Submit>
         </div>

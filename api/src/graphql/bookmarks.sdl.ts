@@ -8,7 +8,7 @@ export const schema = gql`
   }
 
   type Query {
-    bookmarks: [Bookmark!]! @requireAuth
+    bookmarks(userId: String!): [Bookmark!]! @requireAuth
     bookmark(id: Int!): Bookmark @requireAuth
   }
 

@@ -6,8 +6,8 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import Bookmarks from 'src/components/Bookmark/Bookmarks'
 
 export const QUERY = gql`
-  query FindBookmarks {
-    bookmarks {
+  query FindBookmarks($userId: String!) {
+    bookmarks(userId: $userId) {
       id
       createdAt
       updatedAt
@@ -23,10 +23,7 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No bookmarks yet. '}
-      <Link
-        to={routes.newBookmark()}
-        className="rw-link"
-      >
+      <Link to={routes.newBookmark()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>
