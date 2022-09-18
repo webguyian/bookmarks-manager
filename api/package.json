@@ -5,6 +5,7 @@
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.1.5",
     "@redwoodjs/api": "2.2.3",
-    "@redwoodjs/graphql-server": "2.2.3"
+    "@redwoodjs/graphql-server": "2.2.3",
+    "metadata-scraper": "^0.2.60"
   }
 }
