@@ -11,11 +11,24 @@ generator client {
 // Define your own datamodels here and run `yarn redwood prisma migrate dev`
 // to create migrations for them and apply to your dev DB.
 model Bookmark {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now()) @updatedAt
+  id           Int         @id @default(autoincrement())
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @default(now()) @updatedAt
+  userId       String
+  url          String
+  title        String?
+  description  String?
+  collectionId Int?
+  collection   Collection? @relation(fields: [collectionId], references: [id])
+  screenshot   Bytes?
+}
+
+model Collection {
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now()) @updatedAt
   userId      String
-  url         String
-  title       String?
+  title       String
   description String?
+  bookmarks   Bookmark[]
 }

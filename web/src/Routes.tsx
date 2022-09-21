@@ -10,12 +10,19 @@
 import { Router, Route, Set, Private } from '@redwoodjs/router'
 
 import BookmarksLayout from 'src/layouts/BookmarksLayout'
+import CollectionsLayout from 'src/layouts/CollectionsLayout'
 
 import CommonLayout from './layouts/CommonLayout/CommonLayout'
 
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={CollectionsLayout} private unauthenticated="signIn">
+        <Route path="/collections/new" page={CollectionNewCollectionPage} name="newCollection" />
+        <Route path="/collections/{id:Int}/edit" page={CollectionEditCollectionPage} name="editCollection" />
+        <Route path="/collections/{id:Int}" page={CollectionCollectionPage} name="collection" />
+        <Route path="/collections" page={CollectionCollectionsPage} name="collections" />
+      </Set>
       <Set wrap={BookmarksLayout} private unauthenticated="signIn">
         <Route path="/bookmarks/new" page={BookmarkNewBookmarkPage} name="newBookmark" />
         <Route path="/bookmarks/{id:Int}/edit" page={BookmarkEditBookmarkPage} name="editBookmark" />
