@@ -93,6 +93,9 @@ const Bookmark = ({ bookmark }) => {
           </tbody>
         </table>
       </div>
+      {bookmark.screenshot ? (
+        <img alt="Webpage screenshot" src={bookmark.screenshot} />
+      ) : null}
       <nav className="rw-button-group">
         <Link
           to={routes.editBookmark({ id: bookmark.id })}

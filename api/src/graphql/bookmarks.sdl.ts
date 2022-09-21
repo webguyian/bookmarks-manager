@@ -7,6 +7,7 @@ export const schema = gql`
     url: String!
     title: String
     description: String
+    screenshot: String
   }
 
   type Query {

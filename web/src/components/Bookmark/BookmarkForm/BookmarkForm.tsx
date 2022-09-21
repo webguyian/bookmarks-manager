@@ -4,8 +4,8 @@ import {
   FormError,
   FieldError,
   Label,
-  TextField,
   Submit,
+  UrlField,
 } from '@redwoodjs/forms'
 
 const BookmarkForm = (props) => {
@@ -37,7 +37,7 @@ const BookmarkForm = (props) => {
           URL
         </Label>
 
-        <TextField
+        <UrlField
           name="url"
           defaultValue={props.bookmark?.url}
           className="rw-input"
