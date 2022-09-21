@@ -7569,6 +7569,7 @@ __metadata:
     "@redwoodjs/api": 2.2.3
     "@redwoodjs/graphql-server": 2.2.3
     metadata-scraper: ^0.2.60
+    playwright: ^1.26.0
   languageName: unknown
   linkType: soft
 
@@ -19312,6 +19313,26 @@ __metadata:
   dependencies:
     find-up: ^3.0.0
   checksum: ecb60e1f8e1f611c0bdf1a0b6a474d6dfb51185567dc6f29cdef37c8d480ecba5362e006606bb290519bbb6f49526c403fabea93c3090c20368d98bb90c999ab
+  languageName: node
+  linkType: hard
+
+"playwright-core@npm:1.26.0":
+  version: 1.26.0
+  resolution: "playwright-core@npm:1.26.0"
+  bin:
+    playwright: cli.js
+  checksum: 43f70bdc3e725819f5b26b5fbd5c78ca2c5769374818d2ebde7a2ebefb5bd44b301b2f3d04fa7c33cee8850d5395d299c8b063f0504ca5ae2279cbeb1af7d72b
+  languageName: node
+  linkType: hard
+
+"playwright@npm:^1.26.0":
+  version: 1.26.0
+  resolution: "playwright@npm:1.26.0"
+  dependencies:
+    playwright-core: 1.26.0
+  bin:
+    playwright: cli.js
+  checksum: f4bb1c99249c6197670fd597becf52e64f7978bf46ac8edd88c572832baafa1c592e3e8909df57e99ee4ea5b9cd9f0345abec4c5dabdffcfcd92e19c393dc386
   languageName: node
   linkType: hard
 
