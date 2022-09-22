@@ -1,3 +1,4 @@
+import { useAuth } from '@redwoodjs/auth'
 import {
   Form,
   FormError,
@@ -7,21 +8,16 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 
-
-
 const CollectionForm = (props) => {
-  const onSubmit = (data) => {
+  const { currentUser } = useAuth()
 
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
+  const onSubmit = ({ title, description }) => {
+    const data = {
+      title,
+      description,
+      userId: currentUser.id,
+    }
+
     props.onSave(data, props?.collection?.id)
   }
 
@@ -34,25 +30,6 @@ const CollectionForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-      
-        <Label
-          name="userId"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          User id
-        </Label>
-        
-          <TextField
-            name="userId"
-            defaultValue={props.collection?.userId}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
-
-        <FieldError name="userId" className="rw-field-error" />
 
         <Label
           name="title"
@@ -61,15 +38,14 @@ const CollectionForm = (props) => {
         >
           Title
         </Label>
-        
-          <TextField
-            name="title"
-            defaultValue={props.collection?.title}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="title"
+          defaultValue={props.collection?.title}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="title" className="rw-field-error" />
 
@@ -80,22 +56,18 @@ const CollectionForm = (props) => {
         >
           Description
         </Label>
-        
-          <TextField
-            name="description"
-            defaultValue={props.collection?.description}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-          />
-        
+
+        <TextField
+          name="description"
+          defaultValue={props.collection?.description}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
 
         <FieldError name="description" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
           </Submit>
         </div>
